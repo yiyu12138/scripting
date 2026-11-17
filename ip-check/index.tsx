@@ -1,9 +1,8 @@
 import { Widget } from "scripting";
-import { renderIPWidget } from "./widget";
 
 async function main() {
-  const widget = await renderIPWidget();
-  await Widget.present(widget); // 直接展示 Widget
+  // App 内运行只看预览，Widget.present 由 widget.tsx 在 env === "widget" 时调用
+  await Widget.preview({ family: "systemSmall" });
 }
 
 main();
