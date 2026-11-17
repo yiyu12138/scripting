@@ -1,0 +1,29 @@
+{
+  "description" : "Parcel and pickup code tracking with arrival reminders, station matching, location alerts, and pickup statistics.",
+  "remoteDefinitionId" : null,
+  "name" : "包裹助手",
+  "iconImage" : null,
+  "author" : null,
+  "intentInputTypes" : [
+    "texts",
+    "images"
+  ],
+  "permissions" : null,
+  "entry" : "index.tsx",
+  "icon" : "shippingbox.fill",
+  "color" : "rgba(124, 76, 179,1)",
+  "version" : "1.2.0",
+  "contributors" : [
+
+  ],
+  "runInApp" : false,
+  "remoteResource" : null,
+  "localizedDescriptions" : {
+    "zh" : "快递到站自动提醒取件码，支持驿站匹配、位置提醒与取件统计。",
+    "en" : "Pickup code reminders, station matching, location alerts, and pickup stats."
+  },
+  "localizedNames" : {
+    "en" : "ParcelPal",
+    "zh" : "包裹助手"
+  }
+}
