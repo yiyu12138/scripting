@@ -12,13 +12,19 @@
 
 ### 1. 直接导入脚本
 
-在 Safari 打开：
+每个版本都发一个 Release，点下面的链接让 Scripting 直接下载：
 
 ```
-scripting://import_scripts?urls=%5B%22https%3A%2F%2Fraw.githubusercontent.com%2Fyiyu12138%2Fscripting%2Fmain%2Fdist%2Fip-check.zip%22%5D
+https://github.com/yiyu12138/scripting/releases/download/v1.0.2/ip-check.zip
 ```
 
-或者下载 `dist/ip-check.zip` 后用 Scripting 打开。
+导入链接格式（Safari 打开）：
+
+```
+scripting://import_scripts?urls=<encodeURIComponent(JSON数组)>
+```
+
+用 Release 资源而不是 raw 链接，是因为 raw.githubusercontent.com 有 5 分钟 CDN 缓存，刚发版时容易拉到旧文件。
 
 ### 2. 远程来源 + 自动更新
 
