@@ -8,6 +8,7 @@
 | --- | --- | --- |
 | `ip-check/` | IP检测 1.0.2 | 桌面小组件：出口 IP、地区、ISP、风险评分、VPN/代理状态 |
 | `parcel-assistant/` | 包裹助手 1.2.0 | 快递到站自动提醒取件码，支持驿站匹配、位置提醒与取件统计 |
+| `weather-widget/` | 天气小组件 1.4.0 | 主屏幕/锁屏天气组件（镜像自 ios151/Scripting，远程来源已改指本仓库） |
 
 ## 用法
 
@@ -58,4 +59,6 @@ cd repo && zip -r -q dist/ip-check.zip ip-check
 
 ## 来源
 
+- `weather-widget` 镜像自 [ios151/Scripting](https://github.com/ios151/Scripting) 的 WeatherWidget，避免上游删库后不可用。
+- `parcel-assistant` 用户自备脚本，原样入库。
 - `ip-check` 修改自 [riccilnl/my-scripting-widgets](https://github.com/riccilnl/my-scripting-widgets) 的「IP检测」。
