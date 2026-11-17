@@ -1,4 +1,4 @@
-import { VStack, Text, Widget, VirtualNode, Image, HStack, Spacer, Button, modifiers, fetch, Path } from "scripting";
+import { VStack, Text, Widget, VirtualNode, Image, HStack, Spacer, Button, modifiers, fetch, Path, Script } from "scripting";
 import { fetchIPInfo, fetchChinaIP, calculateRiskValue, IPInfo } from "./utils/ip";
 import { RefreshIPIntent } from "./app_intents";
 
@@ -180,5 +180,9 @@ export async function renderIPWidget() {
   return <WidgetView {...widgetProps} />;
 }
 
-// 自动执行以进行预览/测试
-renderIPWidget().then(view => Widget.present(view));
+// 小组件入口：只有 env === "widget" 时才 present。
+// 在 App 里运行时 index.tsx 会 import 本文件，如果不判环境就会出现
+// "Widget.present ... must call only once"。
+if (Script.env === "widget") {
+  renderIPWidget().then(view => Widget.present(view));
+}
