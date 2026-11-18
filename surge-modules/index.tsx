@@ -4,8 +4,6 @@ import {
   List,
   Navigation,
   NavigationStack,
-  Pasteboard,
-  Safari,
   Script,
   SecureField,
   Section,
@@ -25,6 +23,10 @@ import {
 } from "./utils/backup"
 import type { BackupInput, BackupModule, Manifest } from "./utils/backup"
 import { uploadFile } from "./utils/github"
+
+// 这两个也是全局对象，别从 "scripting" import。
+declare const Pasteboard: { setString(text: string): Promise<void> }
+declare const Safari: { openURL(url: string): Promise<boolean> }
 
 const GRAY = "#8E8E93" as any
 

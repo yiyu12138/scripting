@@ -1,5 +1,15 @@
 // 设置与密钥：普通配置存 Storage，密钥只进 Keychain。
-import { Keychain, Storage } from "scripting"
+// Storage / Keychain 是 Scripting 的全局对象，不能从 "scripting" 里 import。
+declare const Storage: {
+  get<T>(key: string, options?: { shared?: boolean }): T | null
+  set(key: string, value: unknown, options?: { shared?: boolean }): boolean
+}
+declare const Keychain: {
+  get(key: string, options?: { synchronizable?: boolean }): string | null
+  set(key: string, value: string, options?: { synchronizable?: boolean; accessibility?: string }): boolean
+  remove(key: string, options?: { synchronizable?: boolean }): boolean
+}
+
 
 export interface SurgeConfig {
   host: string

@@ -1,5 +1,16 @@
 // 本地备份：每次备份一个时间目录，最新的一份另存 latest.json 方便读取。
-import { FileManager, Path } from "scripting"
+import { Path } from "scripting"
+
+// FileManager 同样是全局对象。
+declare const FileManager: {
+  documentsDirectory: string
+  appGroupDocumentsDirectory: string | null
+  existsSync(path: string): boolean
+  createDirectorySync(path: string, recursive?: boolean): void
+  writeAsStringSync(path: string, content: string): void
+  readAsStringSync(path: string): string | null
+  readDirectorySync(path: string): string[]
+}
 
 export interface BackupModule {
   name: string

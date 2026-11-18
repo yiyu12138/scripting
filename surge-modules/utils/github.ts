@@ -1,6 +1,31 @@
 // 把备份推到 GitHub，拿到 raw 地址，好让 Surge 用 surge:///install-module 装回来。
-import { Data, fetch } from "scripting"
+import { fetch } from "scripting"
 import { parseRepo } from "./config"
+
+const B64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
+
+/** 自己算 base64，不依赖 Data 是否被导出。 */
+export function base64Encode(text: string): string {
+  const bytes: number[] = []
+  for (const ch of text) {
+    const code = ch.codePointAt(0) ?? 0
+    if (code < 0x80) bytes.push(code)
+    else if (code < 0x800) bytes.push(0xc0 | (code >> 6), 0x80 | (code & 63))
+    else if (code < 0x10000) bytes.push(0xe0 | (code >> 12), 0x80 | ((code >> 6) & 63), 0x80 | (code & 63))
+    else bytes.push(0xf0 | (code >> 18), 0x80 | ((code >> 12) & 63), 0x80 | ((code >> 6) & 63), 0x80 | (code & 63))
+  }
+  let out = ""
+  for (let i = 0; i < bytes.length; i += 3) {
+    const b0 = bytes[i]
+    const b1 = i + 1 < bytes.length ? bytes[i + 1] : undefined
+    const b2 = i + 2 < bytes.length ? bytes[i + 2] : undefined
+    out += B64[b0 >> 2]
+    out += B64[((b0 & 3) << 4) | (b1 === undefined ? 0 : b1 >> 4)]
+    out += b1 === undefined ? "=" : B64[((b1 & 15) << 2) | (b2 === undefined ? 0 : b2 >> 6)]
+    out += b2 === undefined ? "=" : B64[b2 & 63]
+  }
+  return out
+}
 
 function apiBase(owner: string, name: string, path: string): string {
   const encoded = path.split("/").filter(Boolean).map(encodeURIComponent).join("/")
@@ -56,7 +81,7 @@ export async function uploadFile(options: {
 
   const payload: Record<string, unknown> = {
     message: options.message,
-    content: Data.fromString(options.content)!.toBase64String(),
+    content: base64Encode(options.content),
     branch: options.branch,
   }
   if (sha) payload.sha = sha
