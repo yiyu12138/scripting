@@ -10,7 +10,6 @@
 | `parcel-assistant/` | 包裹助手 1.2.0 | 快递到站自动提醒取件码，支持驿站匹配、位置提醒与取件统计 |
 | `weather-widget/` | 天气小组件 1.4.0 | 主屏幕/锁屏天气组件（镜像自 ios151/Scripting，远程来源已改指本仓库） |
 | `report-ip/` | Report ip 1.3.0 | IP / 风险 / 网络诊断小组件（镜像自 worldhellotravel1999-hue/Scripting，新增小组件自动轮询） |
-| `surge-modules/` | Surge 模块备份 1.0.1 | 从 Surge HTTP API 备份模块，上传 GitHub 后用 surge:///install-module 装回 |
 
 ## 用法
 
@@ -61,7 +60,6 @@ cd repo && zip -r -q dist/ip-check.zip ip-check
 
 ## 来源
 
-- `surge-modules` 自写：Surge 模块备份/恢复（HTTP API + GitHub raw + install-module 深链）。
 - `report-ip` 镜像自 [worldhellotravel1999-hue/Scripting](https://github.com/worldhellotravel1999-hue/Scripting) 的「检测」，加了小组件自动轮询。
 - `weather-widget` 镜像自 [ios151/Scripting](https://github.com/ios151/Scripting) 的 WeatherWidget，避免上游删库后不可用。
 - `parcel-assistant` 用户自备脚本，原样入库。
